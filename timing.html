@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设备定时算法</title>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./css/main.css"> -->
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h2>Timing Data Tool</h2>
+        <textarea class="form-control" rows="3" placeholder="此处粘贴你的数据" v-model="updateHexCommand"></textarea>
+        <button class="btn btn-success" style="margin-top: 12px;" @click="parseCommand">解析</button>
+        <hr>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>index</td>
+                    <td>enable</td>
+                    <td>week-repeat</td>
+
+                    <td class="background-color">t0 enable</td>
+                    <td class="background-color">t0 switch</td>
+                    <td class="background-color">t0 hour</td>
+                    <td class="background-color">t0 minute</td>
+
+                    <td>t1 enable</td>
+                    <td>t1 switch</td>
+                    <td>t1 hour</td>
+                    <td>t1 minute</td>
+                    
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item, index in itemArray">
+                    <td>{{index}}</td>
+                    <td>
+                        <input class="form-control" v-model="item[1]">
+                    </td>
+                    <td>
+                        <input class="form-control" v-model="item[2]">
+                    </td>
+
+                    <td class="background-color"><input class="form-control" v-model="item[3]"></td>
+                    <td class="background-color"><input class="form-control" v-model="item[4]"></td>
+                    <td class="background-color"><input class="form-control" v-model="item[5]"></td>
+                    <td class="background-color"><input class="form-control" v-model="item[6]"></td>
+
+                    <td><input class="form-control" v-model="item[7]"></td>
+                    <td><input class="form-control" v-model="item[8]"></td>
+                    <td><input class="form-control" v-model="item[9]"></td>
+                    <td><input class="form-control" v-model="itemArray[index][10]"></td>
+                    
+                    <td>
+                        <button class="btn btn-default" @click="removeItem(index)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <button class="btn btn-default" @click="addItem">增加</button>
+        </p>
+        
+        <hr>
+        <p>16进制数据</p>
+        <p>{{generateHexCommand}}</p>
+
+        <hr>
+        <p>Debug</p>
+        <pre>{{itemArray}}</pre>
+
+        <hr>
+    </div>
+
+    <script src="js/timing.js"></script>
+    <style>
+    td.background-color {
+        background-color: rgba(0,0,0,0.04);
+    }
+    </style>
+</body>
+
+</html>

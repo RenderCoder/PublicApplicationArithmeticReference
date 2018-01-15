@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>球泡灯图层算法</title>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="header">
+            <div id="white_layer" v-bind:style="{'opacity': white/255}"></div>
+            <div class="colours_layer" v-bind:style="{'opacity': color_layer_opacity/100, 'background-color': hsl}"></div>
+            <img src="./images/header.png" alt="">
+        </div>
+
+        <p>白光：{{white}}</p>
+        <input type="range" v-model="white" min="0" max="255">
+
+        <hr>
+
+        <p>冷暖：滑动条取值{{color_temperature}}</p>
+        <p>渲染 View 使用的透明度：{{color_layer_opacity}}</p>
+        <p>渲染 View 使用的 HSB： {{h}},{{s}},{{b}}</p>
+        <p>下发指令 使用的 HSB： {{h}},{{s}},{{color_layer_opacity}}</p>
+        <!-- <p>hsl: {{hsl}}</p> -->
+        <input type="range" v-model="color_temperature" min="0" max="100">
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
