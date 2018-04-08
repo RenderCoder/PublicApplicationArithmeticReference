@@ -91,6 +91,21 @@ var generate = {
 var parse = {
     fromTimingDataString: function(timingDataString) {
         timingDataString = timingDataString.replace(/^\s+|\s+$/ig, '')
+
+        // 自动添加空格
+        if (/^\w+$/.test(timingDataString)) {
+            var timingDataStringCache = '';
+            for (var i=0,len=timingDataString.length; i<len; i++) {
+                var item = timingDataString[i];
+                if (i>0 && i%2==0) {
+                    timingDataStringCache += ' ';
+                }
+                timingDataStringCache += item;
+                // console.log(item);
+            }
+            timingDataString = timingDataStringCache;
+        }
+
         var originalSplitArray = timingDataString.split(/\s+/ig)
         console.log('originalSplitArray', originalSplitArray)
 
