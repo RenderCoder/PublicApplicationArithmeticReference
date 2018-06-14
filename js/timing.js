@@ -30,13 +30,15 @@ var generate = {
                     enable: true,
                     switch: true,
                     hour: '08',
-                    minute: '00'
+                    minute: '00',
+                    second: '00',
                 },
                 {
                     enable: false,
                     switch: false,
                     hour: '23',
-                    minute: '59'
+                    minute: '59',
+                    second: '00',
                 }
             ]
         }
@@ -58,7 +60,8 @@ var generate = {
                 item.enable?'1':'0', 
                 item.switch?'1':'0', 
                 item.hour, 
-                item.minute
+                item.minute,
+                item.second,
             ]
             // itemSettings.push(r)
             itemSettings = itemSettings.concat(r)
@@ -224,11 +227,13 @@ var app = new Vue({
                 model.item[0].switch = item[4]
                 model.item[0].hour = item[5]
                 model.item[0].minute = item[6]
+                model.item[0].second = item[7]
 
-                model.item[1].enable = item[7]
-                model.item[1].switch = item[8]
-                model.item[1].hour = item[9]
-                model.item[1].minute = item[10]
+                model.item[1].enable = item[8]
+                model.item[1].switch = item[9]
+                model.item[1].hour = item[10]
+                model.item[1].minute = item[11]
+                model.item[1].second = item[12]
                 // console.log(model)
 
                 timingArray.push(model)
@@ -251,8 +256,10 @@ var app = new Vue({
                 0,
                 0,
                 0,
+                0,
                 23,
-                59
+                59,
+                0,
               ]
             this.itemArray.push(item)
         },
